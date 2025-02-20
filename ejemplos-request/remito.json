@@ -1,0 +1,54 @@
+{
+  "tipoDocumento": "REMITO",
+  "datos": {
+    "fecha": "11-02-2025",
+    "remito": "56789",
+    "tipoPago": "Contado",
+    "cartaPorte": "ABC123",
+    "bultos": "10",
+    "descripcion": "Carga frágil",
+    "cae": "123456789",
+    "remitente": {
+      "nombre": "Empresa X",
+      "direccion": "Av. Siempre Viva 742",
+      "provincia": "Buenos Aires",
+      "iva": "RESPONSABLE INSCRIPTO",
+      "cuit": "20-1212121-3"
+    },
+    "destinatario": {
+      "nombre": "Cliente Y",
+      "direccion": "Calle Falsa 123",
+      "provincia": "Córdoba",
+      "iva": "RESPONSABLE INSCRIPTO",
+      "cuit": "20-1212121-3"
+    },
+    "seguro": {
+      "valorDeclarado": "50000",
+      "coeficiente": "0.05",
+      "seguro": "2500"
+    },
+    "contraReembolso": {
+      "coeficiente": "0.02",
+      "importe": "1000",
+      "comision": "20"
+    },
+    "detalleProductos": [
+      {
+        "producto": "Producto A",
+        "unidad": "kg",
+        "cantidad": "5",
+        "precio": "100",
+        "total": "500",
+        "descripcion": "Descripción A"
+      },
+      {
+        "producto": "Producto B",
+        "unidad": "kg",
+        "cantidad": "10",
+        "precio": "150",
+        "total": "1500",
+        "descripcion": "Descripción B"
+      }
+    ]
+  }
+}

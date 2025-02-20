@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Remito</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            width: 21cm;
+            height: 29.7cm;
+            margin: 0 auto;
+            padding: 20px;
+            border: lightseagreen solid 2px;
+        } 
+            
+        .header {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            border-bottom: 2px solid black;
+            padding-bottom: 5px;
+            padding-top: -10px!important;
+            margin-top: -20px!important;
+        }
+        .section {
+            margin-top: 15px;
+            border: 1px solid #000;
+            padding: 8px;
+        }
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 5px;
+            text-align: left;
+        }
+        .two-columns {
+            display: flex;
+            justify-content: space-between;
+        }
+        .column {
+            margin-top: 15px;
+            border: 1px solid #000;
+            padding: 8px;
+            width: 47%;        }
+        .title-box {
+            background: #f0f0f0;
+            text-align: center;
+            font-weight: bold;
+            padding: 5px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Encabezado -->
+<div class="two-columns">
+    <div class="column">
+        <h1>TRANSPORTE SIRO</h1>
+        <p>de ALASSIA NONO S.R.L.</p>
+        <p>Lima 360 - C1437FEJ - Bs. As. - Tel.: (011) 4941-3792</p>
+        <p>Depósito: 4942-1929 - Email: servicios@siroalassia.com.ar</p>
+    </div>
+    <div class="column">
+        <div class="title-box">REMITO N° <span th:text="${remito}"></span></div>
+        <strong>Fecha:</strong> <span th:text="${fecha}"></span></p>
+        <p>C.U.I.T. 30-70710871-8 ING.BRUTOS.C.M. 901-04184573 </p>
+        <p>INICIO DE ACTIVIDADES MARZO 2000</p>
+
+        <p><strong>Carta Porte:</strong> <span th:text="${cartaPorte}"></span></p>
+        <p><strong>Condiciones de Venta:</strong> <span th:text="${condicionesVenta}"></span></p>
+        <p><strong>Tipo de Pago:</strong> <span th:text="${tipoPago}"></span></p>
+        <p><strong>Bultos:</strong> <span th:text="${bultos}"></span></p>
+        </div>
+    </div>
+</div>
+
+<div class="two-columns">
+    <div class="column">
+        <p>DE: Bs.As.</p>
+        <p>REMITE:</p>
+        <p>DOMICILIO:</p>
+        <p>I.V.A.:</p>
+        <p>C.U.I.T.:</p>
+    </div>
+    <div class="column">
+       <P>A: </P>
+       <p>DESTINO:</p>
+       <p>DOMICILIO:</p>
+       <p>I.V.A.:</p>
+       <p>C.U.I.T.:</p>
+    </div>
+</div>
+
+<!-- Información del Remitente y Destinatario -->
+<div class="section">
+    <div class="two-columns">
+        <div class="column">
+            <div class="title-box">Remitente</div>
+            <p><strong>Nombre:</strong> <span th:text="${remitente.nombre}"></span></p>
+            <p><strong>Dirección:</strong> <span th:text="${remitente.direccion}"></span></p>
+            <p><strong>Provincia:</strong> <span th:text="${remitente.provincia}"></span></p>
+            <p><strong>I.V.A.:</strong> <span th:text="${remitente.iva}"></span></p>
+            <p><strong>C.U.I.T.:</strong> <span th:text="${remitente.cuit}"></span></p>
+        </div>
+        <div class="column">
+            <div class="title-box">Destinatario</div>
+            <p><strong>Nombre:</strong> <span th:text="${destinatario.nombre}"></span></p>
+            <p><strong>Dirección:</strong> <span th:text="${destinatario.direccion}"></span></p>
+            <p><strong>Provincia:</strong> <span th:text="${destinatario.provincia}"></span></p>
+            <p><strong>I.V.A.:</strong> <span th:text="${destinatario.iva}"></span></p>
+            <p><strong>C.U.I.T.:</strong> <span th:text="${destinatario.cuit}"></span></p>
+        </div>
+    </div>
+</div>
+
+<!-- Información de la Carga -->
+<div class="section">
+    <div class="title-box">Descripción de la Carga</div>
+    <table>
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Unidad</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Total</th>
+            <th>Descripción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="producto : ${detalleProductos}">
+            <td th:text="${producto.producto}"></td>
+            <td th:text="${producto.unidad}"></td>
+            <td th:text="${producto.cantidad}"></td>
+            <td th:text="${producto.precio}"></td>
+            <td th:text="${producto.total}"></td>
+            <td th:text="${producto.descripcion}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="two-columns">
+    <!-- Seguro -->
+    <div class="column" th:if="${seguro != null}">
+        <div class="title-box">Seguro</div>
+        <p><strong>Valor Declarado:</strong> <span th:text="${seguro.valorDeclarado}"></span></p>
+        <p><strong>Coeficiente:</strong> <span th:text="${seguro.coeficiente}"></span></p>
+        <p><strong>Total Seguro:</strong> <span th:text="${seguro.seguro}"></span></p>
+    </div>
+
+    <!-- ContraReembolso -->
+    <div class="column" th:if="${contraReembolso != null}">
+        <div class="title-box">ContraReembolso</div>
+        <p><strong>Coeficiente:</strong> <span th:text="${contraReembolso.coeficiente}"></span></p>
+        <p><strong>Importe:</strong> <span th:text="${contraReembolso.importe}"></span></p>
+        <p><strong>Comisión:</strong> <span th:text="${contraReembolso.comision}"></span></p>
+    </div>
+</div>
+
+<div class="two-columns">
+    <div class="column">
+
+    <!-- Firma y Recepción -->
+    <div class="column">
+        <div class="title-box">Recepción</div>
+        <p>Recibí conforme:</p>
+        <p>Fecha: ............................</p>
+        <p>Aclaración de Firma: ............................</p>
+        <p>Clase y N° de Documento: ............................</p>
+    </div>
+</div>
+
+<!-- Información Legal -->
+<div class="section">
+    <p><strong>Observaciones:</strong> La empresa no se responsabiliza por mercaderías no debidamente embaladas.</p>
+    <p><strong>CAI N°:</strong> 49438203738730 - Fecha de Vto.: 24/10/2024</p>
+</div>
+
+</body>
+</html>
