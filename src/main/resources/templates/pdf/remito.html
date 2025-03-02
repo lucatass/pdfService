@@ -4,118 +4,122 @@
     <meta charset="UTF-8"/>
     <title>Remito</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 12px;
-            width: 21cm;
-            height: 29.7cm;
-            margin: 0 auto;
-            padding: 20px;
-            border: lightseagreen solid 2px;
-        } 
-            
-        .header {
-            text-align: center;
-            font-size: 14px;
-            font-weight: bold;
-            border-bottom: 2px solid black;
-            padding-bottom: 5px;
-            padding-top: -10px!important;
-            margin-top: -20px!important;
-        }
-        .section {
-            margin-top: 15px;
-            border: 1px solid #000;
-            padding: 8px;
+        @page {
+            size: A5;
+            margin: 0;
         }
 
-        table{
+        html,body {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            display: block;
+            margin: 1px;
+            border: 1px solid black;
+        }
+
+        .section {
+            margin-top: 10px;
+            border: 1px solid #000;
+            padding: 6px;
+        }
+
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin-top: 5px;
         }
+
         th, td {
             border: 1px solid #000;
-            padding: 5px;
+            padding: 4px;
             text-align: left;
         }
+
         .two-columns {
-            display: flex;
-            justify-content: space-between;
+            display: table;
+            width: 100%;
         }
+
         .column {
-            margin-top: 15px;
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
             border: 1px solid #000;
-            padding: 8px;
-            width: 47%;        }
+            padding: 6px;
+        }
+
         .title-box {
             background: #f0f0f0;
             text-align: center;
             font-weight: bold;
-            padding: 5px;
+            padding: 4px;
             border: 1px solid #000;
         }
+
+        .numero {
+            font-size: 24px;
+            background: #f0f0f0;
+            text-align: center;
+            font-weight: bold;
+            padding: 4px;
+            border: 1px solid #000;
+            display: inline-block;
+        }
+
     </style>
 </head>
 <body>
 
-<!-- Encabezado -->
 <div class="two-columns">
     <div class="column">
         <h1>TRANSPORTE SIRO</h1>
         <p>de ALASSIA NONO S.R.L.</p>
-        <p>Lima 360 - C1437FEJ - Bs. As. - Tel.: (011) 4941-3792</p>
+        <p>Lima 360 - Bs. As. - Tel.: (011) 4941-3792</p>
         <p>Depósito: 4942-1929 - Email: servicios@siroalassia.com.ar</p>
     </div>
     <div class="column">
-        <div class="title-box">REMITO N° <span th:text="${remito}"></span></div>
-        <strong>Fecha:</strong> <span th:text="${fecha}"></span></p>
+        <div class="numero">
+            R
+        </div>
+        <p>REMITO documento no valido como factura</p>
+        <p><strong>Fecha:</strong> <span th:text="${fecha}">12/02/2023</span></p>
+        <p><strong>N°:</strong> <span th:text="${numero}">001</span></p>
         <p>C.U.I.T. 30-70710871-8 ING.BRUTOS.C.M. 901-04184573 </p>
         <p>INICIO DE ACTIVIDADES MARZO 2000</p>
-
-        <p><strong>Carta Porte:</strong> <span th:text="${cartaPorte}"></span></p>
-        <p><strong>Condiciones de Venta:</strong> <span th:text="${condicionesVenta}"></span></p>
-        <p><strong>Tipo de Pago:</strong> <span th:text="${tipoPago}"></span></p>
-        <p><strong>Bultos:</strong> <span th:text="${bultos}"></span></p>
-        </div>
     </div>
 </div>
 
 <div class="two-columns">
     <div class="column">
-        <p>DE: Bs.As.</p>
-        <p>REMITE:</p>
-        <p>DOMICILIO:</p>
-        <p>I.V.A.:</p>
-        <p>C.U.I.T.:</p>
+        <p><strong>DE: Bs.As.</strong></p>
+        <p><strong>Remite:</strong> <span th:text="${remitente.nombre}">Transporte Siro</span></p>
+        <p><strong>Domicilio:</strong> <span th:text="${remitente.direccion}">Lima 360 </span></p>
+        <p><strong>I.V.A.:</strong> <span th:text="${remitente.iva}">Iva Responsable Inscripto</span></p>
+        <p><strong>C.U.I.T.:</strong> <span th:text="${remitente.cuit}">30-70710871-8</span></p>
     </div>
     <div class="column">
-       <P>A: </P>
-       <p>DESTINO:</p>
-       <p>DOMICILIO:</p>
-       <p>I.V.A.:</p>
-       <p>C.U.I.T.:</p>
+        <P><strong>A: </strong> <span th:text="${destinatario.nombre}">Destinatario S.A.</span></P>
+        <p><strong>Destino:</strong> <span th:text="${destinatario.provincia}">Buenos Aires</span></p>
+        <p><strong>Domicilio:</strong> <span th:text="${destinatario.direccion}">Av. Independencia 1234</span></p>
+        <p><strong>I.V.A.:</strong> <span th:text="${destinatario.iva}">Iva Exento</span></p>
+        <p><strong>C.U.I.T.:</strong> <span th:text="${destinatario.cuit}">20-12345678-9</span></p>
     </div>
 </div>
 
 <!-- Información del Remitente y Destinatario -->
-<div class="section">
-    <div class="two-columns">
-        <div class="column">
-            <div class="title-box">Remitente</div>
-            <p><strong>Nombre:</strong> <span th:text="${remitente.nombre}"></span></p>
-            <p><strong>Dirección:</strong> <span th:text="${remitente.direccion}"></span></p>
-            <p><strong>Provincia:</strong> <span th:text="${remitente.provincia}"></span></p>
-            <p><strong>I.V.A.:</strong> <span th:text="${remitente.iva}"></span></p>
-            <p><strong>C.U.I.T.:</strong> <span th:text="${remitente.cuit}"></span></p>
-        </div>
-        <div class="column">
-            <div class="title-box">Destinatario</div>
-            <p><strong>Nombre:</strong> <span th:text="${destinatario.nombre}"></span></p>
-            <p><strong>Dirección:</strong> <span th:text="${destinatario.direccion}"></span></p>
-            <p><strong>Provincia:</strong> <span th:text="${destinatario.provincia}"></span></p>
-            <p><strong>I.V.A.:</strong> <span th:text="${destinatario.iva}"></span></p>
-            <p><strong>C.U.I.T.:</strong> <span th:text="${destinatario.cuit}"></span></p>
+<div class="two-columns">
+    <div class="column">
+        <p><strong>Cliente:</strong> <span th:text="${remitente.nombre}">Transporte Siro</span></p>
+        <p><strong>Domicilio:</strong> <span th:text="${remitente.direccion}">Lima 360</span></p>
+        <p><strong>Localidad:</strong> <span th:text="${remitente.provincia}">Buenos Aires</span></p>
+        <p><strong>I.V.A.:</strong> <span th:text="${remitente.iva}">Iva Responsable Inscripto</span></p>
+    </div>
+    <div class="column">
+            <div>
+                <span style="margin-right: 60px;"><strong>Remito N°: </strong><span th:text="${remito}">001</span></span>
+                <span><strong>C.Porte: </strong><span th:text="${cartaPorte}">001</span></span>
+            <p><strong>Valor Declarado:</strong> <span th:text="${valorDeclarado}">1000</span></p>
+            <p><strong>Seguro:</strong> <span th:text="${seguro}">No</span></p>
         </div>
     </div>
 </div>
@@ -129,53 +133,26 @@
             <th>Producto</th>
             <th>Unidad</th>
             <th>Cantidad</th>
-            <th>Precio Unitario</th>
-            <th>Total</th>
-            <th>Descripción</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="producto : ${detalleProductos}">
-            <td th:text="${producto.producto}"></td>
-            <td th:text="${producto.unidad}"></td>
-            <td th:text="${producto.cantidad}"></td>
-            <td th:text="${producto.precio}"></td>
-            <td th:text="${producto.total}"></td>
-            <td th:text="${producto.descripcion}"></td>
+        <tr>
+            <td>semillas</td>
+            <td>Kg</td>
+            <td>10</td>
         </tr>
+
         </tbody>
     </table>
 </div>
 
-<div class="two-columns">
-    <!-- Seguro -->
-    <div class="column" th:if="${seguro != null}">
-        <div class="title-box">Seguro</div>
-        <p><strong>Valor Declarado:</strong> <span th:text="${seguro.valorDeclarado}"></span></p>
-        <p><strong>Coeficiente:</strong> <span th:text="${seguro.coeficiente}"></span></p>
-        <p><strong>Total Seguro:</strong> <span th:text="${seguro.seguro}"></span></p>
-    </div>
-
-    <!-- ContraReembolso -->
-    <div class="column" th:if="${contraReembolso != null}">
-        <div class="title-box">ContraReembolso</div>
-        <p><strong>Coeficiente:</strong> <span th:text="${contraReembolso.coeficiente}"></span></p>
-        <p><strong>Importe:</strong> <span th:text="${contraReembolso.importe}"></span></p>
-        <p><strong>Comisión:</strong> <span th:text="${contraReembolso.comision}"></span></p>
-    </div>
-</div>
-
-<div class="two-columns">
-    <div class="column">
-
-    <!-- Firma y Recepción -->
-    <div class="column">
-        <div class="title-box">Recepción</div>
-        <p>Recibí conforme:</p>
-        <p>Fecha: ............................</p>
-        <p>Aclaración de Firma: ............................</p>
-        <p>Clase y N° de Documento: ............................</p>
-    </div>
+<!-- Firma y Recepción -->
+<div class="section">
+    <div class="title-box">Recepción</div>
+    <p>Recibí conforme:</p>
+    <p>Fecha: ............................</p>
+    <p>Aclaración de Firma: ............................</p>
+    <p>Clase y N° de Documento: ............................</p>
 </div>
 
 <!-- Información Legal -->
