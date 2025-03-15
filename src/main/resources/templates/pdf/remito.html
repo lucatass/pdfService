@@ -66,60 +66,79 @@
             display: inline-block;
         }
 
+        table{
+            border: #000;
+        }
+        td{
+            border: 0.5px dotted #000;
+        }
+        p{
+            margin-top: 0;
+            margin-bottom: 9px;
+        }
+        
     </style>
 </head>
-<body>
+<body >
 
 <div class="two-columns">
     <div class="column">
-        <h1>TRANSPORTE SIRO</h1>
+        <h1 style="text-align: center">TRANSPORTE SIRO</h1>
         <p>de ALASSIA NONO S.R.L.</p>
         <p>Lima 360 - Bs. As. - Tel.: (011) 4941-3792</p>
-        <p>Depósito: 4942-1929 - Email: servicios@siroalassia.com.ar</p>
+        <p>Depósito: 4942-1929</p>
+        <p>Email: servicios@siroalassia.com.ar</p>
     </div>
     <div class="column">
-        <div class="numero">
-            R
+        <div>
+            <div class="numero">
+                R
+            </div>
+            <span style="font-size: 12px ; margin: 0;"th:text="${remito}"></span>
+
         </div>
+        <br></br>
         <p>REMITO documento no valido como factura</p>
-        <p><strong>Fecha:</strong> <span th:text="${fecha}">12/02/2023</span></p>
-        <p><strong>N°:</strong> <span th:text="${numero}">001</span></p>
-        <p>C.U.I.T. 30-70710871-8 ING.BRUTOS.C.M. 901-04184573 </p>
-        <p>INICIO DE ACTIVIDADES MARZO 2000</p>
+        <p><strong>Fecha:</strong> <span th:text="${fecha}"></span></p>
+        <p>C.U.I.T. 30-70710871-8</p>
+        <p> ING.BRUTOS.C.M. 901-04184573 </p>
+
+        
+        <p style="font-size: 8px">INICIO DE ACTIVIDADES MARZO 2000</p>
     </div>
 </div>
 
 <div class="two-columns">
     <div class="column">
         <p><strong>DE: Bs.As.</strong></p>
-        <p><strong>Remite:</strong> <span th:text="${remitente.nombre}">Transporte Siro</span></p>
-        <p><strong>Domicilio:</strong> <span th:text="${remitente.direccion}">Lima 360 </span></p>
-        <p><strong>I.V.A.:</strong> <span th:text="${remitente.iva}">Iva Responsable Inscripto</span></p>
-        <p><strong>C.U.I.T.:</strong> <span th:text="${remitente.cuit}">30-70710871-8</span></p>
+        <p><strong>Remite:</strong> <span th:text="${remitente.nombre}"></span></p>
+        <p><strong>Domicilio:</strong> <span th:text="${remitente.direccion}"> </span></p>
+        <p><strong>I.V.A.:</strong> <span th:text="${remitente.iva}"></span></p>
+        <p><strong>C.U.I.T.:</strong> <span th:text="${remitente.cuit}"></span></p>
     </div>
     <div class="column">
-        <P><strong>A: </strong> <span th:text="${destinatario.nombre}">Destinatario S.A.</span></P>
-        <p><strong>Destino:</strong> <span th:text="${destinatario.provincia}">Buenos Aires</span></p>
-        <p><strong>Domicilio:</strong> <span th:text="${destinatario.direccion}">Av. Independencia 1234</span></p>
-        <p><strong>I.V.A.:</strong> <span th:text="${destinatario.iva}">Iva Exento</span></p>
-        <p><strong>C.U.I.T.:</strong> <span th:text="${destinatario.cuit}">20-12345678-9</span></p>
+        <p><strong>A: </strong> <span th:text="${destinatario.nombre}"></span></p>
+        <p><strong>Destino:</strong> <span th:text="${destinatario.provincia}"></span></p>
+        <p><strong>Domicilio:</strong> <span th:text="${destinatario.direccion}"></span></p>
+        <p><strong>I.V.A.:</strong> <span th:text="${destinatario.iva}"></span></p>
+        <p><strong>C.U.I.T.:</strong> <span th:text="${destinatario.cuit}"></span></p>
     </div>
 </div>
 
 <!-- Información del Remitente y Destinatario -->
 <div class="two-columns">
     <div class="column">
-        <p><strong>Cliente:</strong> <span th:text="${remitente.nombre}">Transporte Siro</span></p>
-        <p><strong>Domicilio:</strong> <span th:text="${remitente.direccion}">Lima 360</span></p>
-        <p><strong>Localidad:</strong> <span th:text="${remitente.provincia}">Buenos Aires</span></p>
-        <p><strong>I.V.A.:</strong> <span th:text="${remitente.iva}">Iva Responsable Inscripto</span></p>
+        <p><strong>Cliente:</strong> <span th:text="${remitente.nombre}"></span></p>
+        <p><strong>Domicilio:</strong> <span th:text="${remitente.direccion}"></span></p>
+        <p><strong>Localidad:</strong> <span th:text="${remitente.provincia}"></span></p>
+        <p><strong>I.V.A.:</strong> <span th:text="${remitente.iva}"></span></p>
     </div>
     <div class="column">
             <div>
-                <span style="margin-right: 60px;"><strong>Remito N°: </strong><span th:text="${remito}">001</span></span>
-                <span><strong>C.Porte: </strong><span th:text="${cartaPorte}">001</span></span>
-            <p><strong>Valor Declarado:</strong> <span th:text="${valorDeclarado}">1000</span></p>
-            <p><strong>Seguro:</strong> <span th:text="${seguro}">No</span></p>
+                <p style="margin-right: 60px;"><strong>Remito N°: </strong><span th:text="${remito}"></span></p>
+                <p><strong>C.Porte: </strong><span th:text="${cartaPorte}"></span></p>
+            <p><strong>Valor Declarado:</strong> <span th:text="${seguro.valorDeclarado}"></span></p>
+            <p><strong>Seguro:</strong> <span th:text="${seguro.seguro}"></span></p>
         </div>
     </div>
 </div>
@@ -135,20 +154,17 @@
             <th>Cantidad</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td>semillas</td>
-            <td>Kg</td>
-            <td>10</td>
+        <tr th:each="detalleProducto : ${detalleProductos}">
+            <td th:text="${detalleProducto.producto}"></td>
+            <td th:text="${detalleProducto.unidad}"></td>
+            <td th:text="${detalleProducto.cantidad}"></td>
         </tr>
 
-        </tbody>
     </table>
 </div>
 
 <!-- Firma y Recepción -->
 <div class="section">
-    <div class="title-box">Recepción</div>
     <p>Recibí conforme:</p>
     <p>Fecha: ............................</p>
     <p>Aclaración de Firma: ............................</p>
