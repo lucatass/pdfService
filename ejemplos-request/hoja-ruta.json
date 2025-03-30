@@ -1,0 +1,56 @@
+{
+  "id": "1",
+  "numero": "2",
+  "fecha": "22-05-2024",
+  "salida": "22-05-2024",
+  "llegada": "23-05-2024",
+  "cerrada": false,
+  "origen": "BAS",
+  "destino": "SNZ",
+  "transporte": "DaberxMall S.A.",
+  "personal": "Guapiru",
+  "camion": "Volvo Blanco",
+  "remitoDtos": [
+    {
+      "id": "4",
+      "fecha": "22-05-2024",
+      "tracking": "PLANTA",
+      "remitente": "Pablo Moringo",
+      "destinatario": "Mormand",
+      "tipoPago": "DESTINO",
+      "remito": "1",
+      "cartaPorte": "2",
+      "bultos": 5,
+      "descripcion": "prueba",
+      "seguro": {
+        "valorDeclarado": 1000.00,
+        "coeficiente": 0.05,
+        "seguro": 50.00
+      },
+      "contraReembolso": {
+        "id": 4,
+        "cartaPorte": 2,
+        "tercero": "Chevrolet",
+        "coeficiente": 0.05,
+        "importe": 1000.00,
+        "comision": 50.00,
+        "fechaRecepcion": null,
+        "fechaEntrega": null,
+        "estado": "PENDIENTE"
+      },
+      "montoOrigen": 50000.00,
+      "montoDestino": 0,
+      "afectacion": "PENDIENTE",
+      "hojaReparto": "N/A",
+      "hojaRuta": "1",
+      "detalleProductos": [
+        {
+          "producto": "Flete",
+          "unidad": "TN",
+          "cantidad": 10.00,
+          "descripcion": "Prueba Producto"
+        }
+      ]
+    }
+  ]
+}
