@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Remito</title>
+    <style>
+        @page {
+            size: A5;
+            margin: 0;
+        }
+
+        html, body {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            display: block;
+            margin: 1px;
+            border: 1px solid black;
+        }
+
+        h2 {
+            margin-bottom: 0;
+            margin-top: 5px;
+        }
+
+        span {
+            padding: -10px !important;
+        }
+
+        table {
+            border: #000;
+        }
+
+        th {
+            border: 0.5px dotted #000;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 9px;
+        }
+
+        .two-columns {
+            display: table;
+            width: 100%;
+        }
+
+        .column {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
+            padding: 4px;
+        }
+
+        .six-columns {
+            display: table;
+            width: 100%;
+        }
+
+        .six-column:nth-child(even) {
+            display: table-cell;
+            text-align: right;
+            width: 10.3%;
+            vertical-align: top;
+            padding: 4px;
+        }
+
+        .six-column:nth-child(odd) {
+            display: table-cell;
+            width: 10%;
+            vertical-align: top;
+            padding: 4px;
+        }
+
+        .section {
+            margin-top: 10px;
+            border: 1px solid #000;
+            padding: 6px;
+        }
+
+        .division {
+            border-bottom: 1px solid #000;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="two-columns" style="">
+    <div class="column" style="text-align: left;">
+        <h2>TRANSPORTES SIRO</h2>
+    </div>
+    <div class="column" style="text-align: right;">
+        <br/>
+        <span th:text="${fecha}"></span>
+    </div>
+</div>
+<p style="text-align: right;">pagina:<span th:text="${pagina}">PaginaX</span>
+</p>
+<div class="two-columns">
+    <div class="column">
+        <span>Destino:
+            <span th:text="${destino}"></span>
+        </span>
+    </div>
+    <div class="column">
+        <span>Hoja de Ruta: <span th:text="${id}"></span></span>
+    </div>
+</div>
+<div class="two-columns">
+    <div class="column">
+        <span>Registro: <span th:text="${numero}"></span></span>
+    </div>
+    <div class="column">
+        <span>Patente:<span th:text="${camion}"></span></span>
+    </div>
+    <div class="column">
+        <span>Chasis: <span th:text="${transporte}"></span></span>
+    </div>
+</div>
+<div class="two-columns">
+    <div class="column">
+        <span>Chofer:<span th:text="${personal}"></span></span>
+    </div>
+    <div class="column">
+        <span>Salida:<span th:text="${salida}"></span></span>
+    </div>
+    <div class="column">
+        <span>Llegada:<span th:text="${llegada}"></span></span>
+    </div>
+</div>
+<div class="section">
+    <table>
+        <thead>
+        <tr>
+            <th>C.Porte</th>
+            <th>Bultos</th>
+            <th>Remitente</th>
+            <th>Destinatario</th>
+            <th>Valor Declarado</th>
+            <th>Contado Origen</th>
+            <th>Cta. Cte. Origen</th>
+            <th>Destino</th>
+            <th>C.Reembolso</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>ABC123</td>
+            <td>10</td>
+            <td>Empresa X</td>
+            <td>Cliente Y</td>
+            <td>50000</td>
+            <td>2000</td>
+            <td>3000</td>
+            <td>DestinoX</td>
+            <td>150</td>
+        </tr>
+        <tr>
+            <td>ABC123</td>
+            <td>10</td>
+            <td>Empresa X</td>
+            <td>Cliente Y</td>
+            <td>50000</td>
+            <td>2000</td>
+            <td>3000</td>
+            <td>DestinoX</td>
+            <td>150</td>
+        </tr>
+
+    </table>
+</div>
+<div class="two-columns">
+    <div class="column">
+        <div class="two-columns">
+            <div class="column">
+                <span>1</span>
+                <br/><span>2</span>
+                <br/><span>Contrareembolso</span>
+                <br/><span>Comisión Contrareembolso</span>
+                <br/><span>I.V.A</span>
+            </div>
+            <div class="column">
+                <span>numero ejemplo 1</span>
+                <br/><span>numero ejemplo 3</span>
+                <br/><span>numero ejemplo 3</span>
+                <br/><span>numero ejemplo 3</span>
+                <br/><span>numero ejemplo 3</span>
+                <br/><span>numero ejemplo 3</span>
+            </div>
+        </div>
+        <div class="division">
+        </div>
+        <div class="two-columns">
+            <div class="column">
+                <span>Total</span>
+            </div>
+            <div>
+                <span th:text="${total}">ejemplo total</span>
+            </div>
+        </div>
+    </div>
+    <div class="column"></div>
+</div>
+<div class="six-columns">
+    <div class="six-column">
+        <span>Cobrado en Origen</span>
+        <br/><span>A Cobrar en Origen</span>
+        <br/><span>CTAS. CTES Destino</span>
+        <br/><span>A Cobrar en Destino</span>
+        <br/><span>Contrareembolso</span>
+    </div>
+    <div class="six-column">
+        <span th:text="${cobradoOrigen}">numero</span>
+        <br/><span th:text="${aCobrarOrigen}">numero</span>
+        <br/><span th:text="${ctasCtesDestino}">numero</span>
+        <br/><span th:text="${aCobrarDestino}">numero</span>
+        <br/><span th:text="${contrareembolso}">numero</span>
+    </div>
+    <div class="six-column">
+        <span>I.V.A.</span>
+        <br/><span>I.V.A.</span>
+        <br/><span>I.V.A.</span>
+        <br/><span>I.V.A.</span>
+    </div>
+    <div class="six-column">
+        <span>numero</span>
+        <br/><span>numero</span>
+        <br/><span>numero</span>
+        <br/><span>numero</span>
+    </div>
+    <div class="six-column">
+        <span>Total</span>
+        <br/><span>Total</span>
+        <br/><span>Total</span>
+        <br/><span>Total</span>
+        <br/><span>Total</span>
+    </div>
+    <div class="six-column">
+        <span>numero </span>
+        <br/><span>numero </span>
+        <br/><span>numero </span>
+        <br/><span>numero </span>
+        <br/><span>numero </span>
+    </div>
+</div>
+
+    <div class="division"></div>
+    <div style="text-align: right; margin-right: 105px;">
+        <span>Total</span>
+
+        <span th:text="${total}">ejemplo total</span>
+    </div>
+</body>
+</html>

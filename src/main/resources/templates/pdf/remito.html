@@ -76,7 +76,7 @@
             margin-top: 0;
             margin-bottom: 9px;
         }
-        
+
     </style>
 </head>
 <body >
@@ -85,7 +85,7 @@
     <div class="column">
         <h1 style="text-align: center">TRANSPORTE SIRO</h1>
         <p>de ALASSIA NONO S.R.L.</p>
-        <p>Lima 360 - Bs. As. - Tel.: (011) 4941-3792</p>
+        <p>Luna 360 - Bs. As. - Tel.: (011) 4941-3792</p>
         <p>Depósito: 4942-1929</p>
         <p>Email: servicios@siroalassia.com.ar</p>
     </div>
@@ -94,16 +94,15 @@
             <div class="numero">
                 R
             </div>
-            <span style="font-size: 12px ; margin: 0;"th:text="${remito}"></span>
+            <span style="font-size: 18px ; margin-left: 10px;" th:text="${remito}"></span>
 
         </div>
-        <br></br>
-        <p>REMITO documento no valido como factura</p>
+        <p style="font-size: 8px; margin-top: 5px">documento no valido como factura</p>
         <p><strong>Fecha:</strong> <span th:text="${fecha}"></span></p>
         <p>C.U.I.T. 30-70710871-8</p>
         <p> ING.BRUTOS.C.M. 901-04184573 </p>
 
-        
+
         <p style="font-size: 8px">INICIO DE ACTIVIDADES MARZO 2000</p>
     </div>
 </div>
@@ -134,9 +133,9 @@
         <p><strong>I.V.A.:</strong> <span th:text="${remitente.iva}"></span></p>
     </div>
     <div class="column">
-            <div>
-                <p style="margin-right: 60px;"><strong>Remito N°: </strong><span th:text="${remito}"></span></p>
-                <p><strong>C.Porte: </strong><span th:text="${cartaPorte}"></span></p>
+        <div>
+            <p style="margin-right: 60px;"><strong>Remito N°: </strong><span th:text="${remito}"></span></p>
+            <p><strong>C.Porte: </strong><span th:text="${cartaPorte}"></span></p>
             <p><strong>Valor Declarado:</strong> <span th:text="${seguro.valorDeclarado}"></span></p>
             <p><strong>Seguro:</strong> <span th:text="${seguro.seguro}"></span></p>
         </div>

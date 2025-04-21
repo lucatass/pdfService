@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Remito</title>
+    <style>
+        @page {
+            size: A5;
+            margin: 0;
+        }
+
+        html,body {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            display: block;
+            margin: 1px;
+            border: 1px solid black;
+        }
+
+        .section {
+            margin-top: 10px;
+            border: 1px solid #000;
+            padding: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 4px;
+            text-align: left;
+        }
+
+        .two-columns {
+            display: table;
+            width: 100%;
+        }
+
+        .column {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
+            border: 1px solid #000;
+            padding: 6px;
+        }
+
+        .title-box {
+            background: #f0f0f0;
+            text-align: center;
+            font-weight: bold;
+            padding: 4px;
+            border: 1px solid #000;
+        }
+
+        .numero {
+            font-size: 24px;
+            background: #f0f0f0;
+            text-align: center;
+            font-weight: bold;
+            padding: 4px;
+            border: 1px solid #000;
+            display: inline-block;
+        }
+
+        table{
+            border: #000;
+        }
+        td{
+            border: 0.5px dotted #000;
+        }
+        p{
+            margin-top: 0;
+            margin-bottom: 9px;
+        }
+
+    </style>
+</head>
+<body >
+
+<div class="two-columns">
+    <div class="column">
+        <h1 style="text-align: center">TRANSPORTE SIRO</h1>
+        <p>de ALASSIA NONO S.R.L.</p>
+        <p>Luna 360 - Bs. As. - Tel.: (011) 4941-3792</p>
+        <p>Depósito: 4942-1929</p>
+        <p>Email: servicios@siroalassia.com.ar</p>
+    </div>
+    <div class="column">
+        <div>
+            <div class="numero">
+                R
+            </div>
+            <span style="font-size: 18px ; margin-left: 10px;" th:text="${remito}"></span>
+
+        </div>
+        <p style="font-size: 8px; margin-top: 5px">documento no valido como factura</p>
+        <p><strong>Fecha:</strong> <span th:text="${fecha}"></span></p>
+        <p>C.U.I.T. 30-70710871-8</p>
+        <p> ING.BRUTOS.C.M. 901-04184573 </p>
+
+
+        <p style="font-size: 8px">INICIO DE ACTIVIDADES MARZO 2000</p>
+    </div>
+</div>
+
+<div class="two-columns">
+    <div class="column">
+        <p><strong>DE: Bs.As.</strong></p>
+        <p><strong>Remite:</strong> <span th:text="${remitente.nombre}"></span></p>
+        <p><strong>Domicilio:</strong> <span th:text="${remitente.direccion}"> </span></p>
+        <p><strong>I.V.A.:</strong> <span th:text="${remitente.iva}"></span></p>
+        <p><strong>C.U.I.T.:</strong> <span th:text="${remitente.cuit}"></span></p>
+    </div>
+    <div class="column">
+        <p><strong>A: </strong> <span th:text="${destinatario.nombre}"></span></p>
+        <p><strong>Destino:</strong> <span th:text="${destinatario.provincia}"></span></p>
+        <p><strong>Domicilio:</strong> <span th:text="${destinatario.direccion}"></span></p>
+        <p><strong>I.V.A.:</strong> <span th:text="${destinatario.iva}"></span></p>
+        <p><strong>C.U.I.T.:</strong> <span th:text="${destinatario.cuit}"></span></p>
+    </div>
+</div>
+
+<!-- Información del Remitente y Destinatario -->
+<div class="two-columns">
+    <div class="column">
+        <p><strong>Cliente:</strong> <span th:text="${remitente.nombre}"></span></p>
+        <p><strong>Domicilio:</strong> <span th:text="${remitente.direccion}"></span></p>
+        <p><strong>Localidad:</strong> <span th:text="${remitente.provincia}"></span></p>
+        <p><strong>I.V.A.:</strong> <span th:text="${remitente.iva}"></span></p>
+    </div>
+    <div class="column">
+        <div>
+            <p style="margin-right: 60px;"><strong>Remito N°: </strong><span th:text="${remito}"></span></p>
+            <p><strong>C.Porte: </strong><span th:text="${cartaPorte}"></span></p>
+            <p><strong>Valor Declarado:</strong> <span th:text="${seguro.valorDeclarado}"></span></p>
+            <p><strong>Seguro:</strong> <span th:text="${seguro.seguro}"></span></p>
+        </div>
+    </div>
+</div>
+
+<!-- Información de la Carga -->
+<div class="section">
+    <div class="title-box">Descripción de la Carga</div>
+    <table>
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Unidad</th>
+            <th>Cantidad</th>
+        </tr>
+        </thead>
+        <tr th:each="detalleProducto : ${detalleProductos}">
+            <td th:text="${detalleProducto.producto}"></td>
+            <td th:text="${detalleProducto.unidad}"></td>
+            <td th:text="${detalleProducto.cantidad}"></td>
+        </tr>
+
+    </table>
+</div>
+
+<!-- Firma y Recepción -->
+<div class="section">
+    <p>Recibí conforme:</p>
+    <p>Fecha: ............................</p>
+    <p>Aclaración de Firma: ............................</p>
+    <p>Clase y N° de Documento: ............................</p>
+</div>
+
+<!-- Información Legal -->
+<div class="section">
+    <p><strong>Observaciones:</strong> La empresa no se responsabiliza por mercaderías no debidamente embaladas.</p>
+    <p><strong>CAI N°:</strong> 49438203738730 - Fecha de Vto.: 24/10/2024</p>
+</div>
+
+</body>
+</html>
