@@ -4,248 +4,300 @@
     <meta charset="UTF-8"/>
     <title>Remito</title>
     <style>
-                @page {
-            size: A5;
-            margin: 0;
+        @page {
+          size: A5;
+          margin: 0;
         }
 
-        html,body {
-            font-family: Arial, sans-serif;
-            font-size: 10px;
-            display: block;
-            margin: 1px;
-            border: 1px solid black;
+        html, body {
+          font-family: Arial, sans-serif;
+          font-size: 10px;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          border: 1px solid black;
+          height: 100%;
         }
-        h2{
-            margin-bottom: 0;
-            margin-top: 5px;
+
+
+
+        h2 {
+          margin-bottom: 0;
+          margin-top: 5px;
         }
-        span{
-            padding: -10px!important;
+
+        span {
+          padding: -10px !important;
         }
-        table{
-            border: #000;
+
+        p {
+          margin-top: 0;
+          margin-bottom: 9px;
         }
-        th{
-            border: 0.5px dotted #000;
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          border: 1px solid #000;
+          page-break-inside: avoid;
         }
-        p{
-            margin-top: 0;
-            margin-bottom: 9px;
+
+        th, td {
+          border: 0.5px dotted #000;
+          padding: 4px;
+        }
+
+        th {
+          border: 0.5px dotted #000;
         }
 
         .two-columns {
-            display: table;
-            width: 100%;
+          display: table;
+          width: 100%;
         }
 
         .column {
-            display: table-cell;
-            width: 50%;
-            vertical-align: top;
-            padding: 4px;
+          display: table-cell;
+          width: 50%;
+          vertical-align: top;
+          padding: 4px;
+        }
+
+        .three-columns {
+          display: table;
+          width: 100%;
+
+        }
+
+        .three-column {
+             display: table-cell;
+             width: 33%;
+             vertical-align: top;
+             padding: 4px;
         }
         .six-columns {
-            display: table;
-            width: 100%;
+          display: table;
+          width: 100%;
         }
 
         .six-column:nth-child(even) {
-            display: table-cell;
-            text-align: right;
-            width: 13.3%;
-            vertical-align: top;
-            padding: 4px;
+          display: table-cell;
+          text-align: right;
+          width: 10.3%;
+          vertical-align: top;
+          padding: 4px;
         }
+
         .six-column:nth-child(odd) {
-            display: table-cell;
-            width: 20%;
-            vertical-align: top;
-            padding: 4px;
+          display: table-cell;
+          width: 16.5%;
+          vertical-align: top;
+          padding: 4px;
         }
+
         .section {
-            margin-top: 10px;
-            border: 1px solid #000;
-            padding: 6px;
+          margin-top: 10px;
+          border: 1px solid #000;
+          padding: 6px;
+          page-break-inside: avoid;
         }
-        .division{
-            border-bottom: 1px solid #000;
-            margin-top: 5px;
-            margin-bottom: 5px;
+
+        .division {
+          border-bottom: 1px solid #000;
+          margin-top: 5px;
+          margin-bottom: 5px;
         }
+
+        .page-break {
+          page-break-before: always;
+          margin-top: 20px; /* o el valor que veas que queda bien */
+        }
+
     </style>
+
 </head>
 <body>
-    <div class="two-columns" style="">
+<div class="two-columns" style="">
+    <div class="column" style="text-align: left;">
+        <h2>TRANSPORTES SIRO</h2>
+    </div>
+    <div class="column" style="text-align: right;">
+        <br/>
+        <span th:text="${fecha}"></span>
+    </div>
+</div>
+<p style="text-align: right;">pagina:<span th:text="${pagina}">PaginaX</span>
+</p>
+<div class="three-columns" >
+    <div class="three-column">
+        <span>Destino:
+            <span th:text="${destino}"></span>
+        </span>
+    </div>
+    <div class="column">
+        <span>Hoja de Ruta: <span th:text="${id}"></span></span>
+    </div>
+</div>
+<div class="three-columns" >
+    <div class="three-column">
+        <span>Registro: <span th:text="${numero}"></span></span>
+    </div>
+    <div class="three-column">
+        <span>Patente:<span th:text="${camion}"></span></span>
+    </div>
+    <div class="three-column">
+        <span>Chasis: <span th:text="${transporte}"></span></span>
+    </div>
+</div>
+<div class="three-columns" >
+    <div class="three-column">
+        <span>Chofer:<span th:text="${personal}"></span></span>
+    </div>
+    <div class="three-column">
+        <span>Salida:<span th:text="${salida}"></span></span>
+    </div>
+    <div class="three-column">
+        <span>Llegada:<span th:text="${llegada}"></span></span>
+    </div>
+</div>
+<div class="section">
+    <table>
+        <thead>
+        <tr>
+            <th>C.Porte</th>
+            <th>Bultos</th>
+            <th>Remitente</th>
+            <th>Destinatario</th>
+            <th>Valor Declarado</th>
+            <th>Contado Origen</th>
+            <th>Cta. Cte. Origen</th>
+            <th>Destino</th>
+            <th>C.Reembolso</th>
+        </tr>
+        </thead>
+    <tr th:each="remito : ${remitoDtos}">
+        <td><span th:text="${remito['cartaPorte']}">ABC123</span></td>
+        <td><span th:text="${remito['bultos']}">10</span></td>
+        <td><span th:text="${remito['remitente']['nombre']}">Empresa X</span></td>
+        <td><span th:text="${remito['destinatario']['nombre']}">Cliente Y</span></td>
+        <td><span th:text="${remito['seguro']['valorDeclarado']}">50000</span></td>
+        <td><span th:text="${remito['montoOrigen']}">2000</span></td>
+        <td><span th:text="${remito['bultos']}">3000</span></td>
+        <td><span th:text="${remito['destinatario']['direccion']}">DestinoX</span></td>
+        <td><span th:text="${remito['contraReembolso']['importe']}">150</span></td>
+    </tr>
+        <div class="page-break"></div>
+
+        <thead>
+        <tr>
+            <th>C.Porte</th>
+            <th>Bultos</th>
+            <th>Remitente</th>
+            <th>Destinatario</th>
+            <th>Valor Declarado</th>
+            <th>Contado Origen</th>
+            <th>Cta. Cte. Origen</th>
+            <th>Destino</th>
+            <th>C.Reembolso</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <div class="two-columns" style="margin-top: 10px;">
         <div class="column" style="text-align: left;">
             <h2>TRANSPORTES SIRO</h2>
         </div>
         <div class="column" style="text-align: right;">
-            <br>
-            <span th:text="${fecha}"></span><span> de fecha</span>
+            <br/>
+            <span th:text="${fecha}"></span>
         </div>
     </div>
-    <p style="text-align: right;">pagina: <span th:text="${pagina}">PaginaX</p>
-    <div class="two-columns">
-        <div class="column">        
-            <span>Destino: <span th:text="${destino}">DestinoX</span> </span>
-        </div>
-        <div class="column">
-            <span>Hoja de Ruta: <span th:text="${hojaRuta}">HojaRutaX</span></span>
-        </div>
-    </div>
-    <div class="two-columns">
-        <div class="column">
-            <span>Registro: <span th:text="${registro}">RegistroX</span></span>
-        </div>
-        <div class="column">
-            <span>Patente:<span th:text="${patente}"></span><span>PatenteX</span></span>
-        </div>
-        <div class="column">
-            <span>Chasis:</span th:text="${chasis}"><span>ChasisX</span>
-        </div>
-    </div>
-    <div class="two-columns">
-        <div class="column">
-            <span>Chofer:<span th:text="${chofer}"></span><span>CoferX</span></span>
-        </div>
-        <div class="column">
-            <span>Salida:<span th:text="${salida}"></span><span>SalidaX</span></span>
-        </div>
-        <div class="column">
-            <span>Llegada:<span th:text="${llegada}"></span><span>LlegadaX</span></span>
-        </div>
-    </div>
-    <div class="section">
-        <table>
-            <thead>
-            <tr>
-                <th>C.Porte</th>
-                <th>Bultos</th>
-                <th>Remitente</th>
-                <th>Destinatario</th>
-                <th>Valor Declarado</th>
-                <th>Contado Origen</th>
-                <th>Cta. Cte. Origen</th>
-                <th>Destino</th>
-                <th>C.Reembolso</th>
-            </tr>
-            </thead>
-            <tr>
-                <td>ABC123</td>
-                <td>10</td>
-                <td>Empresa X</td>
-                <td>Cliente Y</td>
-                <td>50000</td>
-                <td>2000</td>
-                <td>3000</td>
-                <td>DestinoX</td>
-                <td>150</td>
-            </tr>
-            <tr>
-                <td>ABC123</td>
-                <td>10</td>
-                <td>Empresa X</td>
-                <td>Cliente Y</td>
-                <td>50000</td>
-                <td>2000</td>
-                <td>3000</td>
-                <td>DestinoX</td>
-                <td>150</td>
-            </tr>
-    
-        </table>
-    </div>
-    <div class="two-columns">
-        <div class="column">
-            <div class="two-columns">
-                <div class="column">
-                    <span>1</span><br>
-                    <span>2</span><br>
-                    <span>Recolección</span><br>
-                    <span>Contrareembolso</span><br>
-                    <span>Comisión Contrareembolso</span><br>
-                    <span>I.V.A</span><br>
-                </div>
-                <div class="column">
-                    <span>numero ejemplo 1</span><br>
-                    <span>numero ejemplo 3</span><br>
-                    <span>numero ejemplo 3</span><br>
-                    <span>numero ejemplo 3</span><br>
-                    <span>numero ejemplo 3</span><br>
-                    <span>numero ejemplo 3</span><br>
-                </div>
+    <p style="text-align: right;">pagina:<span th:text="${pagina}">PaginaX</span></p>
+
+</div>
+<div class="two-columns">
+    <div class="column">
+        <div class="two-columns">
+            <div class="column">
+                <span>Servicio Fletes:</span>
+                <br/><span>Recolección:</span>
+                <br/><span>Contrareembolso:</span>
+                <br/><span>Comisión Contrareembolso:</span>
+                <br/><span>I.V.A.:</span>
             </div>
-            <div class="division">
+            <div class="column" th:each="remito : ${remitoDtos}">
+                <span>numero ejemplo 1</span>
+                <br/><span th:text="${remito['seguro']['valorDeclarado']}">seguro</span>
+                <br/><span th:text="${remito['contraReembolso']['importe']}">contrareembolso</span>
+                <br/><span th:text="${remito['contraReembolso']['comision']}">comision</span>
+            <span th:text="${T(java.lang.Double).parseDouble(remito['seguro']['valorDeclarado']) * 0.21}">IVA</span>
+
             </div>
-            <div class="two-columns">
-                <div class="column">
-                    <span>Total</span>
-                </div>
-                <div>
-                    <span th:text="${total}">ejemplo total</span>
-                </div>
-                
-            </div>
-            
-        </div>
-        <div class="column"></div>
-    </div>
-    <div class="six-columns">
-        <div class="six-column">
-            <span>Cobrado en Origen</span>
-            <br><span>A Cobrar en Origen</span>
-            <br><span>CTAS. CTES Destino</span>
-            <br><span>A Cobrar en Destino</span>
-            <br><span>Contrareembolso</span>
-        </div>
-        <div class="six-column">
-            <span th:text="${cobradoOrigen}">numero</span> 
-            <br><span th:text="${aCobrarOrigen}">numero</span>
-            <br><span th:text="${ctasCtesDestino}">numero</span>
-            <br><span th:text="${aCobrarDestino}">numero</span>
-            <br><span th:text="${contrareembolso}">numero</span>
-        </div>   
-        <div class="six-column">
-            <span>I.V.A.</span>
-            <br><span>I.V.A.</span>
-            <br><span>I.V.A.</span>
-            <br><span>I.V.A.</span>
-
 
         </div>
-        <div class="six-column">
-            <span>numero</span>
-            <br><span>numero</span>
-            <br><span>numero</span>
-            <br><span>numero</span>
+        <div class="division">
         </div>
-        <div class="six-column">
-            <span>Total</span>
-            <br><span>Total</span>
-            <br><span>Total</span>
-            <br><span>Total</span>
-            <br><span>Total</span>
-        </div>
-        <div class="six-column">
-            <span>numero </span>
-            <br><span>numero </span>
-            <br><span>numero </span>
-            <br><span>numero </span>
-            <br><span>numero </span>
-
-
-        </div>
-
-
-        </div>
-        <div class="division"></div>
-        <div style="text-align: right; margin-right: 105px;">
+        <div class="two-columns">
+            <div class="column">
                 <span>Total</span>
-
+            </div>
+            <div>
                 <span th:text="${total}">ejemplo total</span>
+            </div>
         </div>
+    </div>
+    <div class="column"></div>
+</div>
+<div class="six-columns">
+    <div class="six-column" >
+        <span>Cobrado en Origen</span>
+        <br/><span>A Cobrar en Origen</span>
+        <br/><span>CTAS. CTES Destino</span>
+        <br/><span>A Cobrar en Destino</span>
+        <br/><span>Contrareembolso</span>
+    </div>
+    <div class="six-column">
+        <span th:text="${cobradoOrigen}">numero</span>
+        <br/><span>numero</span>
+        <br/><span>numero</span>
+        <br/><span>numero</span>
+        <br/><span>numero</span>
+
+    </div>
+    <div class="six-column">
+        <span>I.V.A.</span>
+        <br/><span>I.V.A.</span>
+        <br/><span>I.V.A.</span>
+        <br/><span>I.V.A.</span>
+    </div>
+    <div class="six-column">
+        <span>numero</span>
+        <br/><span>numero</span>
+        <br/><span>numero</span>
+        <br/><span>numero</span>
+    </div>
+    <div class="six-column">
+        <span>Total</span>
+        <br/><span>Total</span>
+        <br/><span>Total</span>
+        <br/><span>Total</span>
+        <br/><span>Total</span>
+    </div>
+    <div class="six-column">
+        <span>numero </span>
+        <br/><span>numero </span>
+        <br/><span>numero </span>
+        <br/><span>numero </span>
+        <br/><span>numero </span>
+    </div>
+</div>
+
+    <div class="division"></div>
+    <div style="text-align: right; margin-right: 105px;">
+        <span>Total</span>
+
+        <span th:text="${total}">ejemplo total</span>
     </div>
 </body>
 </html>
-
