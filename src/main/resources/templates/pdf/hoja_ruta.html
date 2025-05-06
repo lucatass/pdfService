@@ -175,33 +175,18 @@
             <th>C.Reembolso</th>
         </tr>
         </thead>
-    <tr th:each="remito : ${remitoDtos}">
-        <td><span th:text="${remito['cartaPorte']}">ABC123</span></td>
-        <td><span th:text="${remito['bultos']}">10</span></td>
-        <td><span th:text="${remito['remitente']['nombre']}">Empresa X</span></td>
-        <td><span th:text="${remito['destinatario']['nombre']}">Cliente Y</span></td>
-        <td><span th:text="${remito['seguro']['valorDeclarado']}">50000</span></td>
-        <td><span th:text="${remito['montoOrigen']}">2000</span></td>
-        <td><span th:text="${remito['bultos']}">3000</span></td>
-        <td><span th:text="${remito['destinatario']['direccion']}">DestinoX</span></td>
-        <td><span th:text="${remito['contraReembolso']['importe']}">150</span></td>
-    </tr>
-        <div class="page-break"></div>
-
-        <thead>
-        <tr>
-            <th>C.Porte</th>
-            <th>Bultos</th>
-            <th>Remitente</th>
-            <th>Destinatario</th>
-            <th>Valor Declarado</th>
-            <th>Contado Origen</th>
-            <th>Cta. Cte. Origen</th>
-            <th>Destino</th>
-            <th>C.Reembolso</th>
+        <tbody>
+        <tr th:each="remito : ${remitoDtos}">
+            <td th:text="${remito['cartaPorte']}">ABC123</td>
+            <td th:text="${remito['bultos']}">10</td>
+            <td th:text="${remito['remitente'] != null ? remito['remitente']['nombre'] : ''}">Remitente</td>
+            <td th:text="${remito['destinatario'] != null ? remito['destinatario']['nombre'] : ''}">Destinatario</td>
+            <td th:text="${remito['seguro']?.valorDeclarado != null ? #numbers.formatDecimal(remito['seguro']['valorDeclarado'], 2, 2) : ''}"></td>
+            <td th:text="${remito['montoOrigen'] != null ? #numbers.formatDecimal(remito['montoOrigen'], 2, 2) : ''}"></td>
+            <td th:text="${remito['montoDestino'] != null ? #numbers.formatDecimal(remito['montoDestino'], 2, 2) : ''}"></td>
+            <td th:text="${remito['contraReembolso']?.importe != null ? #numbers.formatDecimal(remito['contraReembolso']['importe'], 2, 2) : ''}"></td>
         </tr>
-        </thead>
-
+        </tbody>
     </table>
 
     <div class="two-columns" style="margin-top: 10px;">
@@ -258,7 +243,7 @@
         <br/><span>Contrareembolso</span>
     </div>
     <div class="six-column">
-        <span th:text="${cobradoOrigen}">numero</span>
+        <span>numero</span>
         <br/><span>numero</span>
         <br/><span>numero</span>
         <br/><span>numero</span>

@@ -14,7 +14,9 @@ public record RemitoDto(
         Seguro seguro,
         ContraReembolso contraReembolso,
         List<DetalleProductos> detalleProductos,
-        String cae
+        String cae,
+        Double montoOrigen,
+        Double montoDestino
 ) {
         public record Cliente(
                 String nombre,
